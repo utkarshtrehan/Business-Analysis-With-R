@@ -115,7 +115,7 @@ sales_by_year_tbl <- bike_orderlines_wrangled_tbl %>%
     
     # $ Format Text
     mutate(sales_text = scales::dollar(sales))
-
+    
 sales_by_year_tbl
 
 
@@ -192,19 +192,11 @@ sales_by_year_cat_2_tbl %>%
 
 # 7.0 Writing Files ----
 
-fs::dir_create(path = "00_data/bike_sales/data_wrangled_student")
 
 # 7.1 Excel ----
 
-bike_orderlines_wrangled_tbl %>% 
-    write_xlsx(path = "00_data/bike_sales/data_wrangled_student/bike_orderlines.xlsx")
 
 # 7.2 CSV ----
 
-bike_orderlines_wrangled_tbl %>% 
-    write_csv(path = "00_data/bike_sales/data_wrangled_student/bike_orderlines.csv")
 
 # 7.3 RDS ----
-bike_orderlines_wrangled_tbl %>% 
-    write_rds(path = "00_data/bike_sales/data_wrangled_student/bike_orderlines.rds")
-
