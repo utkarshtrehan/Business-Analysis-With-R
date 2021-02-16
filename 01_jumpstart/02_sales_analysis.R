@@ -59,7 +59,41 @@ bike_orderlines_joined_tbl %>% glimpse()
 
 # 5.0 Wrangling Data ----
 
+bike_orderlines_wrangled_tbl <- bike_orderlines_joined_tbl %>%
+    
+    # Separate description into category.1, category.2, and frame.material
+    separate(description,
+             into = c("category.1", "category.2", "frame.material"),
+             sep = " - ",
+             remove = TRUE) %>%
+    
+    # Separate location into city and state
+    separate(location,
+             into = c("city", "state"),
+             sep  = ", ",
+             remove = FALSE) %>%
+    
+    # price extended
+    mutate(total.price = price * quantity) %>%
+    
+    # Reorganize
+    # UPDATE - FIX TO READXL renames X__1 as ...1
+    # select(-X__1, -location) %>%
+    select(-...1, -location) %>%
+    select(-ends_with(".id")) %>%
+    
+    bind_cols(bike_orderlines_joined_tbl %>% select(order.id)) %>%
+    
+    # Reorder columns
+    select(contains("date"), contains("id"), contains("order"),
+           quantity, price, total.price,
+           everything()) %>%
+    
+    # Renaming columns
+    rename(order_date = order.date) %>%
+    set_names(names(.) %>% str_replace_all("\\.", "_")) 
 
+bike_orderlines_wrangled_tbl %>% glimpse()
 
 
 # 6.0 Business Insights ----
