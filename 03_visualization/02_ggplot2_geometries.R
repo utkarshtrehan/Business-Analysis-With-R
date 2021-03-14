@@ -223,3 +223,4 @@ revenue_by_year_tbl %>%
     
     expand_limits(y = 2e7) +
     theme_tq()
+
