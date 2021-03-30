@@ -1,12 +1,12 @@
 ---
 title: "Product Pricing Algorithm"
 author: "Utkarsh Trehan"
-date: "3/19/2019"
+date: "03/30/2021"
 output:
+  pdf_document: default
   html_document:
     df_print: paged
     theme: flatly
-  pdf_document: default
 params:
   interactive: FALSE
 ---
